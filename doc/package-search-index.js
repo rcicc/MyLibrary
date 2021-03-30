@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"be.iccbxl.poo"},{"l":"be.iccbxl.poo.dao"},{"l":"be.iccbxl.poo.metier"},{"l":"be.iccbxl.poo.ui"}]
