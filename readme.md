@@ -9,17 +9,22 @@ Students
 Edward, Mohamed, LUKUNGA, Joachim, Robin, Damien, Patrick
 
 ## Présentation du projet
+
 Application de gestion bibliothécaire (Library Application)
 * Application qui gère des livres, des membres et les emprunts de livres par les membres.
 * Modèle de données : l’application présentera les classes principales suivantes :
 * Person : name, maxBooks (nombre maximum de livres physiques que cette personne peut emprunter en même temps), registrationDate (date d’inscription)
-..* Book : title, author, totalPages, person (personne qui a emprunté le document), loanPeriod (durée d’emprunt), rentalPrice (prix de location), borrowingDate (date d’emprunt), language (langue)
-..* OnlineBook : maxPeople (nombre maximum de personnes qui peuvent emprunter ce livre en même temps), content (contenu du livre)
-..* GraphicNovel : cartoonist (dessinateur), color (couleur ou noir et blanc)
-..* MyLibrary : name, books (liste de livres), people (liste de personnes)
+
+	* Book : title, author, totalPages, person (personne qui a emprunté le document), 
+	loanPeriod (durée d’emprunt), rentalPrice (prix de location), borrowingDate (date d’emprunt), language (langue)
+	* OnlineBook : maxPeople (nombre maximum de personnes qui peuvent emprunter ce livre en même temps), content (contenu du livre)
+	* GraphicNovel : cartoonist (dessinateur), color (couleur ou noir et blanc)
+	* MyLibrary : name, books (liste de livres), people (liste de personnes)
+
+
 * L’application devra permettre les fonctionnalités suivantes :
 
-        ◦ Ajouter/ Retirer un membre (Person) dans la bibliothèque (MyLibrary) ;
+	◦ Ajouter/ Retirer un membre (Person) dans la bibliothèque (MyLibrary) ;
         ◦ Ajouter/ Retirer un livre (Book) dans la bibliothèque (MyLibrary) ;
         ◦ Modifier les détails d’un membre / d’un livre
         ◦ Afficher la liste des membres / des livres
@@ -31,81 +36,98 @@ Application de gestion bibliothécaire (Library Application)
         ◦ Calculer le nombre de jours restants avant restitution d’un livre emprunté
         ◦ Importer / Exporter les données dans un fichier texte
         
-## Nota bene :
-    • Un livre virtuel (OnlineBook) n’entre pas dans le compte du nombre maximum de livres empruntés par le membre (maxBooks) mais il ne peut pas être emprunté par plus de maxPeople à la fois.
-    • Un livre virtuel est automatiquement restitué si sa durée d’emprunt a expirée. Cette vérification se fera lors de la lecture du livre (affichage du contenu).
-Contraintes de développement
-    • Application de type « Console » avec stockage de données dans un fichier XML ou JSON.
-    • Développement au moyen du framework Spring et de librairies professionnelles.
+### Nota bene :
+
+* Un livre virtuel (OnlineBook) n’entre pas dans le compte du nombre maximum de livres empruntés par le membre (maxBooks) mais il ne peut pas être emprunté par plus de maxPeople à la fois.
+* Un livre virtuel est automatiquement restitué si sa durée d’emprunt a expirée. Cette vérification se fera lors de la lecture du livre (affichage du contenu).
+
+## Contraintes de développement
+
+* Application de type « Console » avec stockage de données dans un fichier XML ou JSON.
+* Développement au moyen du framework Spring et de librairies professionnelles.
 
 ## Partie 1 – Description et montage de l’algorithme
 
 Dans un premier temps, on voudrait un simple programme qui permet d’ajout un membre et un livre, de réaliser un emprunt et d’afficher des informations statistiques.
 On écrira une application Java de type console, c’est-à-dire sans interface graphique ni page Web. Elle devra présenter le menu suivant à l’utilisateur :
-    1. Ajouter un membre
-    2. Ajouter un livre
-    3. Emprunter un livre
-    4. Afficher les statistiques
-    0. Quitter
+
+1. Ajouter un membre
+2. Ajouter un livre
+3. Emprunter un livre
+4. Afficher les statistiques
+0. Quitter
 
 L’utilisateur entrera son choix au clavier, puis l’application lui demandera éventuellement des informations supplémentaires (nom du membre, titre du livre,…). À la fin du traitement, l’application affichera à nouveau le menu.
 
 Afin de mieux comprendre le déroulement des séquences d’interaction entre l’application (système) et l’utilisateur, il convient de décrire ses interactions sous forme de scénarios. Ceci correspond à une étape de l’analyse UML.
 
 ## Scénarios
-Ajouter un membre
+
+### Ajouter un membre
 
 Scénario nominal
-    0. Le système affiche le menu principal.
-    1. L’utilisateur entre au clavier la valeur "1" pour l’option « Ajouter un membre ».
-    2. Le système demande à l’utilisateur le nom du membre.
-    3. L’utilisateur entre au clavier le nom du membre.
-    4. Le système demande à l’utilisateur le nombre de livres maximum que le membre peut emprunter.
-    5. L’utilisateur entre au clavier ce nombre de livres maximum.
-    6. Le système crée le membre en générant son id et sa date d’inscription.
-    7. Le système affiche le membre créé pour confirmation.
+
+	0. Le système affiche le menu principal.
+	1. L’utilisateur entre au clavier la valeur "1" pour l’option « Ajouter un membre ».
+	2. Le système demande à l’utilisateur le nom du membre.
+	3. L’utilisateur entre au clavier le nom du membre.
+	4. Le système demande à l’utilisateur le nombre de livres maximum que le membre peut emprunter.
+	5. L’utilisateur entre au clavier ce nombre de livres maximum.
+	6. Le système crée le membre en générant son id et sa date d’inscription.
+	7. Le système affiche le membre créé pour confirmation.
     
-Emprunter un livre
+### Emprunter un livre
 
 Scénario nominal
-    0. Le système affiche le menu principal.
-    1. L’utilisateur entre au clavier la valeur "3" pour l’option « Emprunter un livre ».
-    2. Le système demande à l’utilisateur le titre du livre (ou une partie du titre).
-    3. L’utilisateur entre au clavier le titre ou une partie du titre du livre.
-    4. Le système affiche une liste numérotée des livres disponibles dont le titre contient ces mots. (Les livres non disponibles sont aussi affichés mais pas numérotés).
-    5. L’utilisateur entre au clavier le numéro du livre qui correspond à son choix.
-    6. Le système demande à l’utilisateur le nom du membre qui emprunte.
-    7. L’utilisateur entre au clavier le nom du membre.
-    8. Le système affiche une liste numérotée des membres dont le nom correspond. (Sauf dans le cas d’un e-book, les membres ne pouvant plus emprunter sont aussi affichés mais pas numérotés).
-    9. L’utilisateur entre au clavier le numéro du membre qui correspond à son choix.
-    10. Le système réalise l’emprunt en définissant la date d’emprunt.
-    11. Le système calcule la date de retour.
-    12. Le système affiche une synthèse (Emprunteur, livre, date de retour).
 
-Scénario alternatif
-3a. 5a. 7a. 9a. L’utilisateur peut abandonner la séquence en entrant la valeur « 0 » au clavier. Cette possibilité lui est affichée dans chaque menu.
+	0. Le système affiche le menu principal.
+	1. L’utilisateur entre au clavier la valeur "3" pour l’option « Emprunter un livre ».
+	2. Le système demande à l’utilisateur le titre du livre (ou une partie du titre).
+	3. L’utilisateur entre au clavier le titre ou une partie du titre du livre.
+	4. Le système affiche une liste numérotée des livres disponibles dont le titre contient ces mots. (Les livres non disponibles sont aussi affichés mais pas numérotés).
+	5. L’utilisateur entre au clavier le numéro du livre qui correspond à son choix.
+	6. Le système demande à l’utilisateur le nom du membre qui emprunte.
+	7. L’utilisateur entre au clavier le nom du membre.
+	8. Le système affiche une liste numérotée des membres dont le nom correspond. (Sauf dans le cas d’un e-book, les membres ne pouvant plus emprunter sont aussi affichés mais pas numérotés).
+	9. L’utilisateur entre au clavier le numéro du membre qui correspond à son choix.
+	10. Le système réalise l’emprunt en définissant la date d’emprunt.
+	11. Le système calcule la date de retour.
+	12. Le système affiche une synthèse (Emprunteur, livre, date de retour).
+
+### Scénario alternatif
+
+	3a. 5a. 7a. 9a. L’utilisateur peut abandonner la séquence en entrant la valeur « 0 » au clavier. Cette possibilité lui est affichée dans chaque menu.
+
 Afficher les statistiques
+
 Scénario nominal
-    0. Le système affiche le menu principal.
-    1. L’utilisateur entre au clavier la valeur "A" pour l’option « Afficher les statistiques ».
-    2. Le système affiche les statistiques suivantes :
-        a. nombre total de livres et de membres,
-        b. nombre de livres électroniques et de romans graphiques, 
-        c. nombres de membres qui ont un livre en emprunt, 
-        d. nombre de livres empruntés, 
-        e. nombre de livres en retard.
-    3. Le système affiche, sous forme de graphique, le nombre de membres inscrits chaque mois depuis janvier de l’année en cours.
-Travaux pratiques
-    Q1. Écrire l’algorithme de cette application mais en ne traitant que l’affichage des statistiques. Les données (membres, livres) seront prédéfinies dans des tableaux. Les erreurs de saisie seront signalées à l’utilisateur qui devra alors ressaisir la donnée erronée. L’application se termine quand l’utilisateur choisit la commande « 0 » dans le menu principal.
 
-    Q2. Traduire l’algorithme en Java. On utilisera la méthode statique 	[main] d’une classe [MainApplication1] pour faire le traitement demandé.
+	0. Le système affiche le menu principal.
+	1. L’utilisateur entre au clavier la valeur "A" pour l’option « Afficher les statistiques ».
+	2. Le système affiche les statistiques suivantes :
+		A. nombre total de livres et de membres,	
+	        b. nombre de livres électroniques et de romans graphiques, 
+        	c. nombres de membres qui ont un livre en emprunt, 
+        	d. nombre de livres empruntés, 
+        	e. nombre de livres en retard.
+        	
+	3. Le système affiche, sous forme de graphique, le nombre de membres inscrits chaque mois depuis janvier de l’année en cours.
+	
+	
+## Travaux pratiques
+* Q1. Écrire l’algorithme de cette application mais en ne traitant que l’affichage des statistiques. Les données (membres, livres) seront prédéfinies dans des tableaux. Les erreurs de saisie seront signalées à l’utilisateur qui devra alors ressaisir la donnée erronée. L’application se termine quand l’utilisateur choisit la commande « 0 » dans le menu principal.
+* Q2. Traduire l’algorithme en Java. On utilisera la méthode statique 	[main] d’une classe [MainApplication1] pour faire le traitement demandé.
 
-Partie 2 – Définition des classes
-La classe Person
+## Partie 2 – Définition des classes
+
+### La classe Person
+
 Comme indiqué dans le diagramme de classe UML, une personne se caractérise par un nom (name), le nombre de livres maximum qu’il peut emprunter en même temps (maxBooks) et sa date d’inscription (registrationDate). Libre à vous d’ajouter d’autres attributs. La classe Person est associée à la classe Book, à savoir qu’un membre peut emprunter plusieurs livres. Cela implique la présence d’un attribut books qui sera la liste des livres empruntés par le membre.
-package be.iccbxl.poo.data;
+
+
 
 ```
+package be.iccbxl.poo.data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -183,12 +205,13 @@ Nous pouvons aussi implémenter les deux méthodes « métier » qui consiste 
 
 ```
 
-Travaux pratiques
+### Travaux pratiques
 
-    Q1. Compléter la documentation JavaDoc de la classe Person.
-    Q2. Définissez la classe Book, sans oublier d’ajouter la méthode métier computeRemainingDays, qui calcule le nombre de jours restants avant restitution du livre.
+* Q1. Compléter la documentation JavaDoc de la classe Person.
+* Q2. Définissez la classe Book, sans oublier d’ajouter la méthode métier computeRemainingDays, qui calcule le nombre de jours restants avant restitution du livre.
 
-La classe MyLibrary
+### La classe MyLibrary
+
 La classe MyLibrary se définit par un nom (name) et regroupe les livres (books) et les membres (people). Nous pouvons envisager aussi les méthodes de recherche getAllLateBooks, pour récupérer les livres en retard, et findMemberByName, pour trouver un membre au moyen de son nom.
 
 
@@ -282,6 +305,7 @@ public class MyLibrary {
 
 
 Profitons-en pour définir les methods qui permettront d’ajouter des livres et des membres : addBook et addPerson, ainsi que les méthodes d’affichages : printBooks et printMembers.
+
 
 ```
 package be.iccbxl.poo.data;
@@ -393,9 +417,12 @@ import java.util.StringTokenizer;
 ```
 
 
-Travaux pratiques
-    Q1. Écrivez la méthode loadBooks() qui charge les livres à partir d’un fichier CSV, tel que members.csv.
-    Q2. Écrivez les méthodes saveMembers() et saveBooks() qui enregistre la liste des membres et des livres, respectivement dans les fichiers members.csv et books.csv.
+## Travaux pratiques
+
+* Q1. Écrivez la méthode loadBooks() qui charge les livres à partir d’un fichier CSV, tel que members.csv.
+* Q2. Écrivez les méthodes saveMembers() et saveBooks() qui enregistre la liste des membres et des livres, respectivement dans les fichiers members.csv et books.csv.
+
+
 
 
 
