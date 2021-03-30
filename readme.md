@@ -10,9 +10,9 @@ Edward, Mohamed, LUKUNGA, Joachim, Robin, Damien, Patrick
 
 ## Présentation du projet
 Application de gestion bibliothécaire (Library Application)
-    • Application qui gère des livres, des membres et les emprunts de livres par les membres.
-    • Modèle de données : l’application présentera les classes principales suivantes :
-        ◦ Person : name, maxBooks (nombre maximum de livres physiques que cette personne peut emprunter en même temps), registrationDate (date d’inscription)
+* Application qui gère des livres, des membres et les emprunts de livres par les membres.
+* Modèle de données : l’application présentera les classes principales suivantes :
+** Person : name, maxBooks (nombre maximum de livres physiques que cette personne peut emprunter en même temps), registrationDate (date d’inscription)
         ◦ Book : title, author, totalPages, person (personne qui a emprunté le document), loanPeriod (durée d’emprunt), rentalPrice (prix de location), borrowingDate (date d’emprunt), language (langue)
             ▪ OnlineBook : maxPeople (nombre maximum de personnes qui peuvent emprunter ce livre en même temps), content (contenu du livre)
             ▪ GraphicNovel : cartoonist (dessinateur), color (couleur ou noir et blanc)
